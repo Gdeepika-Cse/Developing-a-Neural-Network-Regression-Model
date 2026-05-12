@@ -6,10 +6,12 @@
 To develop a neural network regression model for the given dataset.
 
 ## THEORY
-Explain the problem statement
+The objective of this experiment is to design, implement, and evaluate a Deep Learning–based Neural Network regression model to predict a continuous output variable from a given set of input features. The task is to preprocess the data, construct a neural network regression architecture, train the model using backpropagation and gradient descent, and evaluate its performance using appropriate regression metrics such as Mean Squared Error (MSE), Mean Absolute Error (MAE), and R² score.
+
 
 ## Neural Network Model
-Include the neural network model diagram.
+<img width="1060" height="665" alt="image" src="https://github.com/user-attachments/assets/645208f1-10fd-4460-82bc-88bdd9f84b28" />
+
 
 ## DESIGN STEPS
 ### STEP 1: 
@@ -46,60 +48,65 @@ Use the trained model to predict  for a new input value .
 
 ## PROGRAM
 
-### Name: DEEPIKA G
+### Name:DEEPIKA G
 
-### Register Number: 212224040060
+### Register Number:212224040060
 
 ```python
 
 class NeuralNet(nn.Module):
   def __init__(self):
         super().__init__()
-        self.fc1=nn.Linear(1, 8)
-        self.fc2=nn.Linear(8, 10)
-        self.fc3=nn.Linear(10, 1)
-        self.relu=nn.ReLU()
-        self.history={'loss':[]}
+
+        self.fc1 = nn.Linear(1, 10)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(10, 1)
+        self.history = {'loss': []}
+
   def forward(self, x):
-        x=self.relu(self.fc1(x))
-        x=self.relu(self.fc2(x))
-        x=self.fc3(x)
+        x = self.fc1(x)
+        x = self.relu(x)
+        x = self.fc2(x)
         return x
 
 
+
 # Initialize the Model, Loss Function, and Optimizer
-
-lig=NeuralNet()
-criterion=nn.MSELoss()
-optimizer=optim.RMSprop(lig. parameters(), lr=0.001);
-
+ai_brain = NeuralNet()
+criterion = nn.MSELoss()
+optimizer = optim.Adam(ai_brain.parameters(), lr=0.01)
 
 
 def train_model(ai_brain, X_train, y_train, criterion, optimizer, epochs=2000):
-    for epoch in range (epochs):
-        optimizer. zero_grad()
-        loss=criterion(ai_brain(X_train), y_train)
-        loss. backward()
+    # Write your code here
+    for epoch in range(epochs):
+        # Forward pass
+        outputs = ai_brain(X_train)
+        loss = criterion(outputs, y_train)
+
+        # Backward and optimize
+        optimizer.zero_grad()
+        loss.backward()
         optimizer.step()
-        lig .history['loss'].append(loss.item())
+
+        ai_brain.history['loss'].append(loss.item())
         if epoch % 200 == 0:
             print(f'Epoch [{epoch}/{epochs}], Loss: {loss.item():.6f}')
 
 ```
 
 ### Dataset Information
-Include screenshot of the generated data
-<img width="294" height="262" alt="image" src="https://github.com/user-attachments/assets/67ca356c-225f-453b-92d3-2b2fa7c847fe" />
-
-
 ### OUTPUT
-<img width="186" height="388" alt="image" src="https://github.com/user-attachments/assets/84c72501-f767-4aa4-bafb-069ac8473e76" />
+
+<img width="180" height="263" alt="image" src="https://github.com/user-attachments/assets/5b85226c-7b25-445a-b720-7003c9b4e7d2" />
 
 ### Training Loss Vs Iteration Plot
-Include your plot here
+
+<img width="580" height="455" alt="image" src="https://github.com/user-attachments/assets/ca09acdf-fc88-42a4-898e-2afa9c3c33e7" />
 
 ### New Sample Data Prediction
-Include your sample input and output here
+
+<img width="311" height="42" alt="image" src="https://github.com/user-attachments/assets/1bada11f-8bfd-404e-9f6b-1e45feeb092e" />
 
 ## RESULT
 Thus, a neural network regression model was successfully developed and trained using PyTorch.
